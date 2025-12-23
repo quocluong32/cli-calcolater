@@ -8,6 +8,10 @@ Improvements:
 - 'q' / 'quit' to exit
 - input validation and division-by-zero handling
 """
+def decorate_function(func):
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
 
 def calculate(op, num1, num2):
     if op in ("add", "+"):
@@ -118,7 +122,7 @@ def evaluate(src, env=None):
             raise ValueError("Unsupported statement in evaluate()")
     return last, env
 
-
+@decorate_function
 def main():
     print("Simple calculator. Type 'q' or 'quit' to exit.")
     env = {}
